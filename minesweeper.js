@@ -1,82 +1,82 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-const board = {
-  cells: [
-    {
-      row: 0,
-      col: 0,
-      isMine: false,
-      hidden: true,
-      isMarked: false,
-      surroundingMines: 0,
-    },
-    {
-      row: 0,
-      col: 1,
-      isMine: true,
-      hidden: true,
-      isMarked: false,
-      surroundingMines: 0,
-    },
-    {
-      row: 0,
-      col: 2,
-      isMine: false,
-      hidden: true,
-      isMarked: false,
-      surroundingMines: 0,
-    },
-    {
-      row: 1,
-      col: 0,
-      isMine: true,
-      hidden: true,
-      isMarked: false,
-      surroundingMines: 0,
-    },
-    {
-      row: 1,
-      col: 1,
-      isMine: false,
-      hidden: true,
-      isMarked: false,
-      surroundingMines: 0,
-    },
-    {
-      row: 1,
-      col: 2,
-      isMine: true,
-      hidden: true,
-      isMarked: false,
-      surroundingMines: 0,
-    },
-    {
-      row: 2,
-      col: 0,
-      isMine: false,
-      hidden: true,
-      isMarked: false,
-      surroundingMines: 0,
-    },
-    {
-      row: 2,
-      col: 1,
-      isMine: false,
-      hidden: true,
-      isMarked: false,
-      surroundingMines: 0,
-    },
-    {
-      row: 2,
-      col: 2,
-      isMine: false,
-      hidden: true,
-      isMarked: false,
-      surroundingMines: 0,
-    },
-  ],
-}
+// const board = {
+//   cells: [
+//     {
+//       row: 0,
+//       col: 0,
+//       isMine: false,
+//       hidden: true,
+//       isMarked: false,
+//       surroundingMines: 0,
+//     },
+//     {
+//       row: 0,
+//       col: 1,
+//       isMine: true,
+//       hidden: true,
+//       isMarked: false,
+//       surroundingMines: 0,
+//     },
+//     {
+//       row: 0,
+//       col: 2,
+//       isMine: false,
+//       hidden: true,
+//       isMarked: false,
+//       surroundingMines: 0,
+//     },
+//     {
+//       row: 1,
+//       col: 0,
+//       isMine: true,
+//       hidden: true,
+//       isMarked: false,
+//       surroundingMines: 0,
+//     },
+//     {
+//       row: 1,
+//       col: 1,
+//       isMine: false,
+//       hidden: true,
+//       isMarked: false,
+//       surroundingMines: 0,
+//     },
+//     {
+//       row: 1,
+//       col: 2,
+//       isMine: true,
+//       hidden: true,
+//       isMarked: false,
+//       surroundingMines: 0,
+//     },
+//     {
+//       row: 2,
+//       col: 0,
+//       isMine: false,
+//       hidden: true,
+//       isMarked: false,
+//       surroundingMines: 0,
+//     },
+//     {
+//       row: 2,
+//       col: 1,
+//       isMine: false,
+//       hidden: true,
+//       isMarked: false,
+//       surroundingMines: 0,
+//     },
+//     {
+//       row: 2,
+//       col: 2,
+//       isMine: false,
+//       hidden: true,
+//       isMarked: false,
+//       surroundingMines: 0,
+//     },
+//   ],
+// }
 
 function startGame() {
   // Don't remove this function call: it makes the game work!
@@ -162,28 +162,37 @@ function randomNum() {
 }
 
 function createBoard() {
-  let row = prompt('How many rows would you like?')
-  let col = prompt('How many columns would you like?')
+  // only ask for rows
+  let row = prompt('How many rows would you like?', 5)
+  // let col = prompt('How many cols would you like?')
   let board = {}
   board.cells = []
   let rowCount = 0
+  let colCount = -1
+  let counter = -1
 
   // loop row
-  for (let i = 0; i < row; i++) {}
 
-  // for (let i = 0; i < row * col; i++) {
-  //   // row = 5
-  //   // col = 5
+  for (let i = 0; i < row * row; i++) {
+    counter++
 
-  //   if (i === col) {
-  //     rowCount++
-  //   }
-  //   let cell = createCell(rowCount, i)
-  //   board.cells.push(cell)
-  // }
+    if (counter == row) {
+      counter = 0
+      rowCount++
+    }
+
+    if (colCount == row - 1) {
+      colCount = -1
+    }
+
+    colCount++
+
+    let cell = createCell(rowCount, colCount)
+    board.cells.push(cell)
+  }
 
   return board
 }
 
-let newBoard = createBoard()
-console.log(newBoard)
+let board = createBoard()
+console.log(board)
