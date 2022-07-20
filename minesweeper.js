@@ -163,7 +163,7 @@ function randomNum() {
 
 function createBoard() {
   // only ask for rows
-  let row = prompt('How many rows would you like?', 5)
+  let row = prompt('How many rows would you like?', '6 max')
   // let col = prompt('How many cols would you like?')
   let board = {}
   board.cells = []
@@ -175,6 +175,7 @@ function createBoard() {
 
   for (let i = 0; i < row * row; i++) {
     counter++
+    colCount++
 
     if (counter == row) {
       counter = 0
@@ -184,8 +185,6 @@ function createBoard() {
     if (colCount == row - 1) {
       colCount = -1
     }
-
-    colCount++
 
     let cell = createCell(rowCount, colCount)
     board.cells.push(cell)
