@@ -154,7 +154,7 @@ function createCell(row, col) {
 
 function randomNum() {
   let num = Math.random()
-  if (num < 0.5) {
+  if (num < 0.2) {
     return true
   } else {
     return false
@@ -162,36 +162,22 @@ function randomNum() {
 }
 
 function createBoard() {
-  // only ask for rows
+  // only ask for rows as they need to be the same
   let row = prompt('How many rows would you like?', '6 max')
-  // let col = prompt('How many cols would you like?')
+  // let col = prompt('How many cols would you like?', '6 max')
   let board = {}
   board.cells = []
-  let rowCount = 0
-  let colCount = -1
-  let counter = -1
 
   // loop row
 
-  for (let i = 0; i < row * row; i++) {
-    counter++
-    colCount++
-
-    if (counter == row) {
-      counter = 0
-      rowCount++
+  for (i = 0; i < row; i++) {
+    for (j = 0; j < row; j++) {
+      let cell = createCell(i, j)
+      board.cells.push(cell)
     }
-
-    if (colCount == row - 1) {
-      colCount = -1
-    }
-
-    let cell = createCell(rowCount, colCount)
-    board.cells.push(cell)
   }
 
   return board
 }
 
 let board = createBoard()
-console.log(board)
